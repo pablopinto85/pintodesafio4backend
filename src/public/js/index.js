@@ -22,7 +22,7 @@ const cargarDom = (prod) => {
   `;
 };
 
-//Consultar Producto
+
 const formGet = document.getElementById("formGet");
 const resGet = document.getElementById("resGet");
 
@@ -41,7 +41,7 @@ socket.on("getProduct", (data) => {
   });
 });
 
-//Agregar Producto
+
 const formPost = document.getElementById("formPost");
 const resAdd = document.getElementById("resAdd");
 
@@ -60,7 +60,7 @@ socket.on("addProduct", (data) => {
   });
 });
 
-//Actualizar Producto
+
 const formPut = document.getElementById("formPut");
 const resPut = document.getElementById("resPut");
 
@@ -83,7 +83,7 @@ socket.on("putProduct", (data) => {
   });
 });
 
-//Eliminar por ID
+
 const formDelete = document.getElementById("formDelete");
 const resDelete = document.getElementById("resDelete");
 

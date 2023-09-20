@@ -3,10 +3,10 @@ import ProductManager from "../controllers/ProductManager.js";
 
 const productRouter = Router();
 
-//Creamos Manero de Archvos por FileSystem
+
 const productos = new ProductManager();
 
-//Ruta a todos los Productos y Query Limit
+
 productRouter.get("/", async (req, res) => {
   try {
     res.send(await productos.getProducts(req.query.limit));
@@ -14,7 +14,7 @@ productRouter.get("/", async (req, res) => {
     console.log(error);
   }
 });
-//Ruta a Producto por ID
+
 productRouter.get("/:id", async (req, res) => {
   try {
     let productById = await productos.getProductsById(req.params.id);
@@ -29,7 +29,7 @@ productRouter.get("/:id", async (req, res) => {
     console.log(error);
   }
 });
-//Ruta para agregar Producto
+
 productRouter.post("/", async (req, res) => {
   let addProduct = await productos.addProduct(req.body);
   if (addProduct === "JSON incompleto. Faltan 1 o mas Datos")
@@ -40,7 +40,7 @@ productRouter.post("/", async (req, res) => {
     });
   return res.send(addProduct);
 });
-//Ruta para Modificar Producto por ID
+
 productRouter.put("/:id", async (req, res) => {
   const { id } = req.params;
   const modify = req.body;
@@ -59,7 +59,7 @@ productRouter.put("/:id", async (req, res) => {
     });
   return res.send(modifyProduct);
 });
-//Ruta para eliminar Producto por si ID
+
 productRouter.delete("/:id", async (req, res) => {
   let { id } = req.params;
   let productDelete = await productos.deleteProducts(id);

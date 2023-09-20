@@ -1,10 +1,10 @@
-//Nav Scroll
+
 window.addEventListener("scroll", () => {
   let nav = document.querySelector(".nav");
   nav.classList.toggle("nav-scroll", window.scrollY > 400);
 });
 
-//Indicador de Seccion
+
 const menu = document.querySelectorAll(".menu");
 const secciones = document.querySelectorAll(".seccion");
 const seccion = new IntersectionObserver(
@@ -29,7 +29,7 @@ const seccion = new IntersectionObserver(
 );
 secciones.forEach((item) => seccion.observe(item));
 
-//Menu Hamburguesa
+
 const hamburger = document.querySelector(".hamburger");
 const nav_mobile = document.querySelector(".nav-mobile-container");
 
@@ -52,7 +52,7 @@ for (let i = 0; i < navItemMobile.length; i++) {
   });
 }
 
-//Modal carrito
+
 const modalCarrito = document.getElementById("modal-carrito");
 const openCarrito = document.getElementById("carrito");
 const openCarritoXs = document.getElementById("carrito_xs");

@@ -1,17 +1,17 @@
 import { Router } from "express";
 import CartsManager from "../controllers/CartsManager.js";
 
-//Importamos Router Creados
+
 const cartsRouter = Router();
-//Creamos Manero de Archvos por FileSystem
+
 const carts = new CartsManager();
 
-//Ruta para Agregar Carritos
+
 cartsRouter.post("/", async (req, res) => {
   let newCart = await carts.addCarts();
   res.send(newCart);
 });
-//Ruta para Consultar Productos en Carrito por ID
+
 cartsRouter.get("/:id", async (req, res) => {
   let cartById = await carts.getCartById(req.params.id);
   if (cartById === 404)
@@ -22,7 +22,7 @@ cartsRouter.get("/:id", async (req, res) => {
     });
   res.send(cartById);
 });
-//Ruta para agregar Productos por ID a Carrito por ID
+
 cartsRouter.post("/:cid/products/:pid", async (req, res) => {
   let productInCart = await carts.addProductInCart(
     req.params.cid,
