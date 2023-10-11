@@ -23,8 +23,6 @@ document.getElementById('file-form').addEventListener('submit', async (e) => {
                 text: `Imagen Cargada Correctamente`,
                 confirmButtonText: 'Aceptar',
             }).then((result) => result.isConfirmed ? location.reload() : null);
-
-            [userInputElement.value, messageInputElement.value] = ['', ''];
         } else {
             console.error('Error al enviar el mensaje');
         }

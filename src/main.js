@@ -7,6 +7,7 @@ import cartsRouter from "./router/carts.routes.js"
 import messagesRouter from "./router/messages.routes.js"
 import productsRouter from "./router/product.routes.js"
 import uploadRouter from "./router/upload.routes.js"
+import upload from "./upload.js";
 
 
 const app = express()
@@ -51,4 +52,8 @@ app.get("/multer", async (req, res) => {
     })
 
 
-})
+});
+app.post("/upload", upload.single("file"), (req, res) => {
+    
+    res.json({ message: "Imagen cargada correctamente" });
+  });
