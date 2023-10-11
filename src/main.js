@@ -6,21 +6,21 @@ import mongoose from "mongoose"
 import cartsRouter from "./router/carts.routes.js"
 import messagesRouter from "./router/messages.routes.js"
 import productsRouter from "./router/product.routes.js"
-import uploadRouter from "./router/upload.routes.js"
-import upload from "./upload.js";
+import { router as uploadRouter } from "./router/upload.routes.js";
 
-
-const app = express()
-
-
-
-const PORT = 8080
+const app = express();
+const PORT = 8080;
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-const httpServer = app.listen(PORT, () => {
-  console.log(`Servidor Express Puerto ${PORT}`);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+app.listen(PORT, () => {
+    console.log(`Servidor Express Puerto ${PORT}`);
 });
 
 mongoose.connect("mongodb+srv://pablopinto1985:ppn742617@cluster0.xgl3mhk.mongodb.net/?retryWrites=true&w=majority")
@@ -53,7 +53,4 @@ app.get("/multer", async (req, res) => {
 
 
 });
-app.post("/upload", upload.single("file"), (req, res) => {
-    
-    res.json({ message: "Imagen cargada correctamente" });
-  });
+app.use("/uploadRouter", uploadRouter);

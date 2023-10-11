@@ -1,23 +1,29 @@
-import { Router } from "express";
-import { uploader } from "../controllers/upload.js";
+import express from "express";
+import multer from "multer";
+import __dirname from "../utils.js";
 
-const router = Router();
 
-let products = []; 
-
-router.get("/", (req, res) => {
-  res.send({ status: "success", payload: products }); 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, `${__dirname}/public/files`),
+  filename: (req, file, cb) => cb(null, file.originalname)
 });
 
-router.post("/upload", uploader.single("file"), (req, res) => {
+const upload = multer({ storage: storage });
 
+const router = express.Router();
+
+router.post("/upload", upload.single("file"), (req, res) => {
   if (!req.file) {
-    return res.status(400).send({ status: "error", error: "No se pudo guardar la imagen" });
+    return res.status(400).json({ status: "error", error: "No se pudo guardar la imagen" });
   }
+
   let prod = req.body;
   prod.profile = req.file.path;
-  products.push(prod);
-  res.send({ status: "success", message: "Imagen Guardada" });
+
+  res.json({ status: "success", message: "Imagen Guardada" });
 });
 
-export default router;
+export { router };
+
+
+
